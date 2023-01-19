@@ -1,24 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230119 14:13:25.392" rpa="false" schemaversion="3">
-<suite id="s1" name="Demo3" source="C:\Mine\Company\LT7\robot_project\robot_suite\demo3.robot">
-<test id="s1-t1" name="TC10" line="15">
-<kw name="Create Dictionary" library="BuiltIn">
-<var>&amp;{emp_dic}</var>
-<arg>emp_id=101</arg>
-<arg>emp_name=jack</arg>
-<arg>role=qa</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20230119 14:13:25.439" level="INFO">&amp;{emp_dic} = { emp_id=101 | emp_name=jack | role=qa }</msg>
-<status status="PASS" starttime="20230119 14:13:25.439" endtime="20230119 14:13:25.439"/>
+<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230119 15:18:17.844" rpa="false" schemaversion="3">
+<suite id="s1" name="Demo6 Tabs" source="C:\Mine\Company\LT7\robot_project\selenium_suite\demo6_tabs.robot">
+<test id="s1-t1" name="TC1" line="5">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>browser=chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230119 15:18:18.261" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<status status="PASS" starttime="20230119 15:18:18.261" endtime="20230119 15:18:21.106"/>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${emp_dic}[emp_id]</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230119 14:13:25.439" endtime="20230119 14:13:25.439"/>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230119 15:18:21.106" endtime="20230119 15:18:21.234"/>
 </kw>
-<status status="PASS" starttime="20230119 14:13:25.439" endtime="20230119 14:13:25.439"/>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>30s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20230119 15:18:21.235" endtime="20230119 15:18:21.237"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>url=https://www.db4free.net/</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20230119 15:18:21.238" level="INFO">Opening url 'https://www.db4free.net/'</msg>
+<status status="PASS" starttime="20230119 15:18:21.237" endtime="20230119 15:18:23.165"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>partial link=phpMyAdmin</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230119 15:18:23.167" level="INFO">Clicking element 'partial link=phpMyAdmin'.</msg>
+<status status="PASS" starttime="20230119 15:18:23.166" endtime="20230119 15:18:23.261"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>phpMyAdmin</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20230119 15:18:23.262" endtime="20230119 15:18:24.941"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=input_username</arg>
+<arg>test123</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230119 15:18:24.942" level="INFO">Typing text 'test123' into text field 'id=input_username'.</msg>
+<status status="PASS" starttime="20230119 15:18:24.941" endtime="20230119 15:18:25.041"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=input_username</arg>
+<arg>admin</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230119 15:18:25.042" level="INFO">Typing text 'admin' into text field 'id=input_username'.</msg>
+<status status="PASS" starttime="20230119 15:18:25.041" endtime="20230119 15:18:25.109"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>id=input_password</arg>
+<arg>welcome123</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20230119 15:18:25.110" level="INFO">Typing password into text field 'id=input_password'.</msg>
+<msg timestamp="20230119 15:18:25.147" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20230119 15:18:25.202" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20230119 15:18:25.109" endtime="20230119 15:18:25.202"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>id=input_go</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230119 15:18:25.203" level="INFO">Clicking element 'id=input_go'.</msg>
+<status status="PASS" starttime="20230119 15:18:25.202" endtime="20230119 15:18:25.732"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>60s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230119 15:19:25.745" level="INFO">Slept 1 minute</msg>
+<status status="PASS" starttime="20230119 15:18:25.732" endtime="20230119 15:19:25.745"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230119 15:19:25.745" endtime="20230119 15:19:27.926"/>
+</kw>
+<status status="PASS" starttime="20230119 15:18:18.261" endtime="20230119 15:19:27.926"/>
 </test>
-<status status="PASS" starttime="20230119 14:13:25.392" endtime="20230119 14:13:25.439"/>
+<status status="PASS" starttime="20230119 15:18:17.847" endtime="20230119 15:19:27.926"/>
 </suite>
 <statistics>
 <total>
@@ -27,7 +84,7 @@
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Demo3">Demo3</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Demo6 Tabs">Demo6 Tabs</stat>
 </suite>
 </statistics>
 <errors>
