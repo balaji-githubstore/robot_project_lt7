@@ -64,7 +64,8 @@ TC7
     END
 
 TC8
-    @{fruits}      Create List     orange   mango   apple    pineapple     kiwi
+    @{fruits}      Create List     orange   mango
+    ...   apple    pineapple     kiwi
     
     FOR    ${fruit}    IN    @{fruits}
         Log To Console    ${fruit}

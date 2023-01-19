@@ -1,92 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230119 15:18:17.844" rpa="false" schemaversion="3">
-<suite id="s1" name="Demo6 Tabs" source="C:\Mine\Company\LT7\robot_project\selenium_suite\demo6_tabs.robot">
+<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230119 16:14:19.092" rpa="false" schemaversion="3">
+<suite id="s1" name="Demo1 App Launch" source="C:\Mine\Company\LT7\robot_project\appium_suite\demo1_app_launch.robot">
 <test id="s1-t1" name="TC1" line="5">
-<kw name="Open Browser" library="SeleniumLibrary">
-<arg>browser=chrome</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20230119 15:18:18.261" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
-<status status="PASS" starttime="20230119 15:18:18.261" endtime="20230119 15:18:21.106"/>
+<kw name="Open Application" library="AppiumLibrary">
+<arg>remote_url=http://localhost:4723/wd/hub</arg>
+<arg>platformName=android</arg>
+<arg>deviceName=oneplus</arg>
+<arg>app=C:${/}Components${/}khan-academy-7-3-2.apk</arg>
+<doc>Opens a new application to given Appium server.
+Capabilities of appium server, Android and iOS,
+Please check https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/server-args.md
+| *Option*            | *Man.* | *Description*     |
+| remote_url          | Yes    | Appium server url |
+| alias               | no     | alias             |
+| strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
+<msg timestamp="20230119 16:14:23.476" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60670&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
+<msg timestamp="20230119 16:14:27.524" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A606D0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
+<msg timestamp="20230119 16:14:31.572" level="WARN">Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60D90&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
+<kw name="Capture Page Screenshot" library="AppiumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20230119 16:14:35.620" level="FAIL">No application is open</msg>
+<status status="FAIL" starttime="20230119 16:14:35.620" endtime="20230119 16:14:35.636"/>
 </kw>
-<kw name="Maximize Browser Window" library="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20230119 15:18:21.106" endtime="20230119 15:18:21.234"/>
+<msg timestamp="20230119 16:14:35.652" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
+<msg timestamp="20230119 16:14:35.652" level="FAIL">MaxRetryError: HTTPConnectionPool(host='localhost', port=4723): Max retries exceeded with url: /wd/hub/session (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60FD0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</msg>
+<status status="FAIL" starttime="20230119 16:14:19.388" endtime="20230119 16:14:35.652"/>
 </kw>
-<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
-<arg>30s</arg>
-<doc>Sets the implicit wait value used by Selenium.</doc>
-<status status="PASS" starttime="20230119 15:18:21.235" endtime="20230119 15:18:21.237"/>
-</kw>
-<kw name="Go To" library="SeleniumLibrary">
-<arg>url=https://www.db4free.net/</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20230119 15:18:21.238" level="INFO">Opening url 'https://www.db4free.net/'</msg>
-<status status="PASS" starttime="20230119 15:18:21.237" endtime="20230119 15:18:23.165"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>partial link=phpMyAdmin</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230119 15:18:23.167" level="INFO">Clicking element 'partial link=phpMyAdmin'.</msg>
-<status status="PASS" starttime="20230119 15:18:23.166" endtime="20230119 15:18:23.261"/>
-</kw>
-<kw name="Switch Window" library="SeleniumLibrary">
-<arg>phpMyAdmin</arg>
-<doc>Switches to browser window matching ``locator``.</doc>
-<status status="PASS" starttime="20230119 15:18:23.262" endtime="20230119 15:18:24.941"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=input_username</arg>
-<arg>test123</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230119 15:18:24.942" level="INFO">Typing text 'test123' into text field 'id=input_username'.</msg>
-<status status="PASS" starttime="20230119 15:18:24.941" endtime="20230119 15:18:25.041"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=input_username</arg>
-<arg>admin</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20230119 15:18:25.042" level="INFO">Typing text 'admin' into text field 'id=input_username'.</msg>
-<status status="PASS" starttime="20230119 15:18:25.041" endtime="20230119 15:18:25.109"/>
-</kw>
-<kw name="Input Password" library="SeleniumLibrary">
-<arg>id=input_password</arg>
-<arg>welcome123</arg>
-<doc>Types the given password into the text field identified by ``locator``.</doc>
-<msg timestamp="20230119 15:18:25.110" level="INFO">Typing password into text field 'id=input_password'.</msg>
-<msg timestamp="20230119 15:18:25.147" level="INFO">Temporally setting log level to: NONE</msg>
-<msg timestamp="20230119 15:18:25.202" level="INFO">Log level changed from NONE to INFO.</msg>
-<status status="PASS" starttime="20230119 15:18:25.109" endtime="20230119 15:18:25.202"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>id=input_go</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20230119 15:18:25.203" level="INFO">Clicking element 'id=input_go'.</msg>
-<status status="PASS" starttime="20230119 15:18:25.202" endtime="20230119 15:18:25.732"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>60s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20230119 15:19:25.745" level="INFO">Slept 1 minute</msg>
-<status status="PASS" starttime="20230119 15:18:25.732" endtime="20230119 15:19:25.745"/>
-</kw>
-<kw name="Close Browser" library="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20230119 15:19:25.745" endtime="20230119 15:19:27.926"/>
-</kw>
-<status status="PASS" starttime="20230119 15:18:18.261" endtime="20230119 15:19:27.926"/>
+<status status="FAIL" starttime="20230119 16:14:19.388" endtime="20230119 16:14:35.667">MaxRetryError: HTTPConnectionPool(host='localhost', port=4723): Max retries exceeded with url: /wd/hub/session (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60FD0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</status>
 </test>
-<status status="PASS" starttime="20230119 15:18:17.847" endtime="20230119 15:19:27.926"/>
+<status status="FAIL" starttime="20230119 16:14:19.092" endtime="20230119 16:14:35.667"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Demo6 Tabs">Demo6 Tabs</stat>
+<stat pass="0" fail="1" skip="0" id="s1" name="Demo1 App Launch">Demo1 App Launch</stat>
 </suite>
 </statistics>
 <errors>
+<msg timestamp="20230119 16:14:23.476" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60670&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
+<msg timestamp="20230119 16:14:27.524" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A606D0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
+<msg timestamp="20230119 16:14:31.572" level="WARN">Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60D90&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
+<msg timestamp="20230119 16:14:35.652" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
 </errors>
 </robot>
