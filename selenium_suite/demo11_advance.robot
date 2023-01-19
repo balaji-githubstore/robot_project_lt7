@@ -1,6 +1,7 @@
 *** Settings ***
 Library     SeleniumLibrary
 #selenium advance code
+#javascript code
 *** Test Cases ***
 TC1
     Log To Console    C:\\Mine\\Balaji-Profile_2022.pdf
