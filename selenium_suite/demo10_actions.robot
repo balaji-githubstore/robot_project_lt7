@@ -7,7 +7,7 @@ TC1
     Maximize Browser Window
     Set Selenium Implicit Wait    30s
     Go To    url=https://nasscom.in
-    Mouse Over    xpath=//a[text()='Membership']
+#    Mouse Over    xpath=//a[text()='Membership']
     Click Element    xpath=//a[text()='Members Listing']
 
 TC2
