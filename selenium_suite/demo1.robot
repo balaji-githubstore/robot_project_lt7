@@ -32,8 +32,10 @@ TC5
     Input Password    id=input_password    welcome123
     Click Element    id=input_go
 
-
-
+TC6
+    Open Browser    url=https://www.db4free.net/phpMyAdmin/     browser=chrome
+    ${page_source}  Get Source
+    Log To Console    ${page_source}
 
 
 

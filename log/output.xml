@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230119 16:14:19.092" rpa="false" schemaversion="3">
-<suite id="s1" name="Demo1 App Launch" source="C:\Mine\Company\LT7\robot_project\appium_suite\demo1_app_launch.robot">
+<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230120 16:17:53.785" rpa="false" schemaversion="3">
+<suite id="s1" name="Demo2 Cloud Launch" source="C:\Mine\Company\LT7\robot_project\appium_suite\demo2_cloud_launch.robot">
 <test id="s1-t1" name="TC1" line="5">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{dic}</var>
+<arg>buildName=khan lt7</arg>
+<arg>projectName=khan project lt7</arg>
+<arg>userName=dinakaranbalaji1</arg>
+<arg>accessKey=6yXRE4nK1fyvTHWA2kPD</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230120 16:17:54.095" level="INFO">&amp;{dic} = { buildName=khan lt7 | projectName=khan project lt7 | userName=dinakaranbalaji1 | accessKey=6yXRE4nK1fyvTHWA2kPD }</msg>
+<status status="PASS" starttime="20230120 16:17:54.095" endtime="20230120 16:17:54.097"/>
+</kw>
 <kw name="Open Application" library="AppiumLibrary">
-<arg>remote_url=http://localhost:4723/wd/hub</arg>
+<arg>remote_url=http://hub.browserstack.com/wd/hub</arg>
 <arg>platformName=android</arg>
-<arg>deviceName=oneplus</arg>
-<arg>app=C:${/}Components${/}khan-academy-7-3-2.apk</arg>
+<arg>deviceName=Google Pixel 3</arg>
+<arg>app=bs://e49a881bded2b3893487347f3a0f346652fe5616</arg>
+<arg>platformVersion=9.0</arg>
+<arg>bstack:options=${dic}</arg>
 <doc>Opens a new application to given Appium server.
 Capabilities of appium server, Android and iOS,
 Please check https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/server-args.md
@@ -14,36 +26,91 @@ Please check https://github.com/appium/appium/blob/master/docs/en/writing-runnin
 | remote_url          | Yes    | Appium server url |
 | alias               | no     | alias             |
 | strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
-<msg timestamp="20230119 16:14:23.476" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60670&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
-<msg timestamp="20230119 16:14:27.524" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A606D0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
-<msg timestamp="20230119 16:14:31.572" level="WARN">Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60D90&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
-<kw name="Capture Page Screenshot" library="AppiumLibrary">
-<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<msg timestamp="20230119 16:14:35.620" level="FAIL">No application is open</msg>
-<status status="FAIL" starttime="20230119 16:14:35.620" endtime="20230119 16:14:35.636"/>
+<status status="PASS" starttime="20230120 16:17:54.097" endtime="20230120 16:18:28.635"/>
 </kw>
-<msg timestamp="20230119 16:14:35.652" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
-<msg timestamp="20230119 16:14:35.652" level="FAIL">MaxRetryError: HTTPConnectionPool(host='localhost', port=4723): Max retries exceeded with url: /wd/hub/session (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60FD0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</msg>
-<status status="FAIL" starttime="20230119 16:14:19.388" endtime="20230119 16:14:35.652"/>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>xpath=//android.widget.TextView[@text='Dismiss']</arg>
+<arg>30s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<msg timestamp="20230120 16:18:31.846" level="INFO">xpath criteria: //android.widget.TextView[@text='Dismiss']
+xpath criteria: //android.widget.TextView[@text='Dismiss']
+xpath criteria: //android.widget.TextView[@text='Dismiss']</msg>
+<status status="PASS" starttime="20230120 16:18:28.635" endtime="20230120 16:18:31.846"/>
 </kw>
-<status status="FAIL" starttime="20230119 16:14:19.388" endtime="20230119 16:14:35.667">MaxRetryError: HTTPConnectionPool(host='localhost', port=4723): Max retries exceeded with url: /wd/hub/session (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60FD0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</status>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>xpath=//android.widget.TextView[@text='Dismiss']</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230120 16:18:31.846" level="INFO">Clicking element 'xpath=//android.widget.TextView[@text='Dismiss']'.</msg>
+<msg timestamp="20230120 16:18:32.029" level="INFO">xpath criteria: //android.widget.TextView[@text='Dismiss']</msg>
+<status status="PASS" starttime="20230120 16:18:31.846" endtime="20230120 16:18:32.029"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>xpath=//android.widget.TextView[@text='Sign in']</arg>
+<arg>30s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<msg timestamp="20230120 16:18:32.760" level="INFO">xpath criteria: //android.widget.TextView[@text='Sign in']</msg>
+<status status="PASS" starttime="20230120 16:18:32.029" endtime="20230120 16:18:32.760"/>
+</kw>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>xpath=//android.widget.TextView[@text='Sign in']</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230120 16:18:32.760" level="INFO">Clicking element 'xpath=//android.widget.TextView[@text='Sign in']'.</msg>
+<msg timestamp="20230120 16:18:33.246" level="INFO">xpath criteria: //android.widget.TextView[@text='Sign in']</msg>
+<status status="PASS" starttime="20230120 16:18:32.760" endtime="20230120 16:18:33.246"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>xpath=//android.widget.TextView[@text='Sign in']</arg>
+<arg>30s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<msg timestamp="20230120 16:18:33.995" level="INFO">xpath criteria: //android.widget.TextView[@text='Sign in']</msg>
+<status status="PASS" starttime="20230120 16:18:33.246" endtime="20230120 16:18:33.995"/>
+</kw>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>xpath=//android.widget.TextView[@text='Sign in']</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20230120 16:18:33.997" level="INFO">Clicking element 'xpath=//android.widget.TextView[@text='Sign in']'.</msg>
+<msg timestamp="20230120 16:18:34.187" level="INFO">xpath criteria: //android.widget.TextView[@text='Sign in']</msg>
+<status status="PASS" starttime="20230120 16:18:33.995" endtime="20230120 16:18:34.187"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>xpath=//*[contains(@text,'e-mail address')]</arg>
+<arg>30s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<msg timestamp="20230120 16:18:34.981" level="INFO">xpath criteria: //*[contains(@text,'e-mail address')]</msg>
+<status status="PASS" starttime="20230120 16:18:34.187" endtime="20230120 16:18:34.981"/>
+</kw>
+<kw name="Input Password" library="AppiumLibrary">
+<arg>xpath=//*[contains(@text,'e-mail address')]</arg>
+<arg>bala@gmail.com</arg>
+<doc>Types the given password into text field identified by `locator`.</doc>
+<msg timestamp="20230120 16:18:34.981" level="INFO">Typing password into text field 'xpath=//*[contains(@text,'e-mail address')]'</msg>
+<msg timestamp="20230120 16:18:35.743" level="INFO">xpath criteria: //*[contains(@text,'e-mail address')]</msg>
+<status status="PASS" starttime="20230120 16:18:34.981" endtime="20230120 16:18:35.744"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230120 16:18:40.747" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20230120 16:18:35.744" endtime="20230120 16:18:40.747"/>
+</kw>
+<kw name="Close Application" library="AppiumLibrary" type="TEARDOWN">
+<doc>Closes the current application and also close webdriver session.</doc>
+<status status="PASS" starttime="20230120 16:18:40.747" endtime="20230120 16:18:42.268"/>
+</kw>
+<status status="PASS" starttime="20230120 16:17:54.094" endtime="20230120 16:18:42.268"/>
 </test>
-<status status="FAIL" starttime="20230119 16:14:19.092" endtime="20230119 16:14:35.667"/>
+<status status="PASS" starttime="20230120 16:17:53.801" endtime="20230120 16:18:42.268"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Demo1 App Launch">Demo1 App Launch</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Demo2 Cloud Launch">Demo2 Cloud Launch</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20230119 16:14:23.476" level="WARN">Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60670&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
-<msg timestamp="20230119 16:14:27.524" level="WARN">Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A606D0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
-<msg timestamp="20230119 16:14:31.572" level="WARN">Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000024242A60D90&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /wd/hub/session</msg>
-<msg timestamp="20230119 16:14:35.652" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No application is open</msg>
 </errors>
 </robot>
