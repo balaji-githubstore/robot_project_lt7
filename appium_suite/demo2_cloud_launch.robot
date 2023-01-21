@@ -32,3 +32,19 @@ TC1
     Input Password    xpath=//*[contains(@text,'e-mail address')]    bala@gmail.com
     Sleep    5s
     [Teardown]  Close Application
+
+#TC2
+#    Log To Console    HELO
+#    ${CHECK}    Set Variable    FAIL
+#    WHILE    '${CHECK}'=='FAIL'
+#        ${output}   Run Keyword And Ignore Error    Click Element    xpath=//*[contains(@text,'e-mail address')]
+#        ${CHECK}    Set Variable    ${output}[0]
+#    END
+#
+#TC3
+#    Log To Console    HELO
+#    ${CHECK}    Set Variable    FAIL
+#    WHILE    '${CHECK}'=='FAIL'
+#        ${output}   Run Keyword And Ignore Error    Log To Console    hel
+#        ${CHECK}    Set Variable    ${output}[0]
+#    END
