@@ -7,8 +7,9 @@ TC1 Sign Up
     Open Application    remote_url=http://localhost:4723/wd/hub
     ...     platformName=android
     ...     deviceName=oneplus
-    ...     appPackage=
-    ...     appActivity=
+    ...     appPackage=org.khanacademy.android
+    ...     appActivity=org.khanacademy.android.ui.library.MainActivity
+    ...     noReset=true
     #click on settings icon
     #click on sign in
     # click on sign up with email
@@ -19,4 +20,5 @@ TC1 Sign Up
     #password as welcome123
 
     #runs always wether test case pass or fail
+    Sleep    5s
     [Teardown]   Close Application
