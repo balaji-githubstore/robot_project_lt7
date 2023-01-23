@@ -1,6 +1,12 @@
 *** Settings ***
 Library     AppiumLibrary
 
+*** Keywords ***
+Wait And Click Element
+    [Arguments]        ${locator}
+    Wait Until Page Contains Element    ${locator}      30s
+    Click Element    ${locator}
+
 
 *** Test Cases ***
 #install native app
@@ -87,6 +93,8 @@ TC4
     
     Wait Until Page Contains Element    xpath=//*[contains(@text,'issue')]
     Element Text Should Be    xpath=//*[contains(@text,'issue')]    There was an issue signing in
+    
+#    Wait And Click Element    xpath=//*
     
     Sleep    5s
     [Teardown]  Close Application
