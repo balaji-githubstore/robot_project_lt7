@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230121 17:31:54.817" rpa="false" schemaversion="3">
-<suite id="s1" name="Demo2 Android Native App" source="C:\Mine\Company\LT7\robot_project\appium_suite\demo2_android_native_app.robot">
-<test id="s1-t1" name="TC1 Sign Up" line="4">
+<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230124 12:46:24.273" rpa="false" schemaversion="3">
+<suite id="s1" name="Demo5 Ios Nativeapp" source="C:\Mine\Company\LT7\robot_project\appium_suite\demo5_ios_nativeapp.robot">
+<test id="s1-t1" name="TC2" line="23">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{dic}</var>
+<arg>buildName=khan lt7</arg>
+<arg>projectName=khan project lt7</arg>
+<arg>userName=dinakaranbalaji1</arg>
+<arg>accessKey=6yXRE4nK1fyvTHWA2kPD</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230124 12:46:24.576" level="INFO">&amp;{dic} = { buildName=khan lt7 | projectName=khan project lt7 | userName=dinakaranbalaji1 | accessKey=6yXRE4nK1fyvTHWA2kPD }</msg>
+<status status="PASS" starttime="20230124 12:46:24.576" endtime="20230124 12:46:24.592"/>
+</kw>
 <kw name="Open Application" library="AppiumLibrary">
-<arg>remote_url=http://localhost:4723/wd/hub</arg>
-<arg>platformName=android</arg>
-<arg>deviceName=oneplus</arg>
-<arg>appPackage=org.khanacademy.android</arg>
-<arg>appActivity=org.khanacademy.android.ui.library.MainActivity</arg>
-<arg>noReset=true</arg>
+<arg>remote_url=http://hub.browserstack.com/wd/hub</arg>
+<arg>platformName=ios</arg>
+<arg>deviceName=iPhone 11 Pro</arg>
+<arg>app=bs://88a260eace592d6e515984c8375f7269bee518f2</arg>
+<arg>platformVersion=13</arg>
+<arg>bstack:options=${dic}</arg>
 <doc>Opens a new application to given Appium server.
 Capabilities of appium server, Android and iOS,
 Please check https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/server-args.md
@@ -16,23 +26,40 @@ Please check https://github.com/appium/appium/blob/master/docs/en/writing-runnin
 | remote_url          | Yes    | Appium server url |
 | alias               | no     | alias             |
 | strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
-<status status="PASS" starttime="20230121 17:31:55.091" endtime="20230121 17:32:04.583"/>
+<status status="PASS" starttime="20230124 12:46:24.592" endtime="20230124 12:46:35.797"/>
+</kw>
+<kw name="Set Appium Timeout" library="AppiumLibrary">
+<arg>20s</arg>
+<doc>Sets the timeout in seconds used by various keywords.</doc>
+<status status="PASS" starttime="20230124 12:46:35.797" endtime="20230124 12:46:35.797"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>xpath=//XCUIElementTypeTextField[@name='test-Username']</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<msg timestamp="20230124 12:46:36.226" level="INFO">xpath criteria: //XCUIElementTypeTextField[@name='test-Username']</msg>
+<status status="PASS" starttime="20230124 12:46:35.797" endtime="20230124 12:46:36.227"/>
+</kw>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>xpath=//XCUIElementTypeTextField[@name='test-Username']</arg>
+<arg>balaji</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20230124 12:46:36.230" level="INFO">Typing text 'balaji' into text field 'xpath=//XCUIElementTypeTextField[@name='test-Username']'</msg>
+<msg timestamp="20230124 12:46:38.546" level="INFO">xpath criteria: //XCUIElementTypeTextField[@name='test-Username']</msg>
+<status status="PASS" starttime="20230124 12:46:36.227" endtime="20230124 12:46:38.546"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
-<arg>5s</arg>
+<arg>2s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20230121 17:32:09.598" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20230121 17:32:04.584" endtime="20230121 17:32:09.606"/>
+<msg timestamp="20230124 12:46:40.563" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230124 12:46:38.547" endtime="20230124 12:46:40.564"/>
 </kw>
 <kw name="Close Application" library="AppiumLibrary" type="TEARDOWN">
 <doc>Closes the current application and also close webdriver session.</doc>
-<status status="PASS" starttime="20230121 17:32:09.608" endtime="20230121 17:32:10.200"/>
+<status status="PASS" starttime="20230124 12:46:40.567" endtime="20230124 12:46:41.834"/>
 </kw>
-<doc>Working with native app
-for automating sign up activity</doc>
-<status status="PASS" starttime="20230121 17:31:55.090" endtime="20230121 17:32:10.201"/>
+<status status="PASS" starttime="20230124 12:46:24.576" endtime="20230124 12:46:41.835"/>
 </test>
-<status status="PASS" starttime="20230121 17:31:54.817" endtime="20230121 17:32:10.201"/>
+<status status="PASS" starttime="20230124 12:46:24.289" endtime="20230124 12:46:41.837"/>
 </suite>
 <statistics>
 <total>
@@ -41,7 +68,7 @@ for automating sign up activity</doc>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Demo2 Android Native App">Demo2 Android Native App</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Demo5 Ios Nativeapp">Demo5 Ios Nativeapp</stat>
 </suite>
 </statistics>
 <errors>

@@ -9,7 +9,7 @@ TC1
     Go To    url=https://netbanking.hdfcbank.com/netbanking/IpinResetUsingOTP.htm
     Click Element    xpath=//img[@alt='Go']
 
-    ${alert_text}  Handle Alert    action=ACCEPT
+    ${alert_text}  Handle Alert    action=ACCEPT     timeout=30s
     Log To Console    ${alert_text}
     Should Be Equal    ${alert_text}    Customer ID${SPACE}${SPACE}cannot be left blank.
 

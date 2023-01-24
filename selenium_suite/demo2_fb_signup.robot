@@ -2,7 +2,9 @@
 Library     SeleniumLibrary
 
 *** Test Cases ***
+#assignment
 TC1 Register
+    [Documentation]         Sign up automation
     Open Browser    url=https://www.facebook.com     browser=chrome
     Maximize Browser Window
     Set Selenium Implicit Wait    30s
