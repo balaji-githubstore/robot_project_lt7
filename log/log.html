@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 6.0 (Python 3.10.2 on win32)" name="Generator">
+<meta content="Robot Framework 4.1.3 (Python 3.10.2 on darwin)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all" type="text/css">
 /* Generic and misc styles */
@@ -318,9 +318,6 @@ th.stats-col-graph:hover {
     top: 0;
     padding: 3px;
     cursor: default;
-}
-.element-header .label {
-    margin-right: 0.5em;
 }
 .name {
     font-weight: bold;
@@ -969,7 +966,6 @@ window.model = (function () {
     }
     function Keyword(data) {
         var kw = createModelObject(data);
-        var flatTypes = ['RETURN', 'BREAK', 'CONTINUE'];
         kw.libname = data.libname;
         kw.fullName = (kw.libname ? kw.libname + '.' : '') + kw.name;
         kw.type = data.type;
@@ -1354,8 +1350,8 @@ window.testdata = function () {
     var _statistics = null;
     var LEVELS = ['TRACE', 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FAIL', 'SKIP'];
     var STATUSES = ['FAIL', 'PASS', 'SKIP', 'NOT RUN'];
-    var KEYWORD_TYPES = ['KEYWORD', 'SETUP', 'TEARDOWN', 'FOR', 'ITERATION', 'IF', 'ELSE IF', 'ELSE', 'RETURN',
-                         'TRY', 'EXCEPT', 'FINALLY', 'WHILE', 'CONTINUE', 'BREAK'];
+    var KEYWORD_TYPES = ['KEYWORD', 'SETUP', 'TEARDOWN', 'FOR', 'VAR', 'IF', 'ELSE IF', 'ELSE'];
+    var MESSAGE_TYPE = 8;
     function addElement(elem) {
         if (!elem.id)
             elem.id = uniqueId();
@@ -1376,10 +1372,10 @@ window.testdata = function () {
                 elapsed];
     }
     function createMessage(element, strings) {
-        return model.Message(LEVELS[element[1]],
-                             util.timestamp(element[0]),
-                             strings.get(element[2]),
-                             strings.get(element[3]));
+        return model.Message(LEVELS[element[2]],
+                             util.timestamp(element[1]),
+                             strings.get(element[3]),
+                             strings.get(element[4]));
     }
     function parseStatus(stats) {
         return STATUSES[stats[0]];
@@ -1390,7 +1386,7 @@ window.testdata = function () {
         };
     }
     function createBodyItem(parent, element, strings, index) {
-        if (element.length < 5)
+        if (element[0] == MESSAGE_TYPE)
             return createMessage(element, strings);
         var messages = util.filter(parent.children(), function (child) {
             return child.type == 'message';
@@ -1803,25 +1799,25 @@ function stopPropagation(event) {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[1,0,17548],[],[[4,0,0,[],[1,287,17259],[[0,5,6,0,7,8,9,0,[1,287,16],[[287,2,10]]],[0,11,12,0,13,14,0,0,[1,303,11205],[]],[0,15,12,0,16,17,0,0,[1,11508,0],[]],[0,18,12,0,19,20,0,0,[1,11508,430],[[11937,2,21]]],[0,22,12,0,23,24,0,0,[1,11938,2319],[[11941,2,25],[14257,2,21]]],[0,26,6,0,27,28,0,0,[1,14258,2017],[[16274,2,29]]],[2,30,12,0,31,0,0,0,[1,16278,1267],[]]]]],[],[1,1,0,0]];
+window.output["suite"] = [1,2,3,0,[],[1,0,32036],[],[[4,0,0,[],[1,182,31853],[[0,5,6,0,7,8,0,0,[1,182,6453],[]],[0,9,6,0,10,11,0,0,[1,6635,1],[]],[0,12,6,0,13,14,0,0,[1,6636,595],[[8,7229,2,15]]],[0,16,6,0,17,18,0,0,[1,7231,1451],[[8,7233,2,19],[8,8682,2,15]]],[0,12,6,0,13,20,0,0,[1,8683,988],[[8,9670,2,21]]],[0,16,6,0,17,22,0,0,[1,9671,4173],[[8,9673,2,23],[8,13844,2,21]]],[0,24,6,0,25,26,0,0,[1,13845,1052],[[8,13846,2,27],[8,14896,2,28]]],[0,12,6,0,13,29,0,0,[1,14897,3181],[[8,18078,2,30]]],[0,24,6,0,25,29,0,0,[1,18079,2329],[[8,18080,2,31],[8,20407,2,32]]],[0,12,6,0,13,29,0,0,[1,20408,1371],[[8,21779,2,32]]],[0,24,6,0,25,29,0,0,[1,21779,1659],[[8,21781,2,31],[8,23438,2,32]]],[0,12,6,0,13,33,0,0,[1,23439,1124],[[8,24563,2,34]]],[0,24,6,0,25,33,0,0,[1,24564,1401],[[8,24565,2,35],[8,25964,2,34]]],[0,36,37,0,38,39,0,0,[1,25965,5001],[[8,30966,2,40]]],[2,41,6,0,42,0,0,0,[1,30967,1067],[]]]]],[],[1,1,0,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*Demo5 Ios Nativeapp","*C:\\Mine\\Company\\LT7\\robot_project\\appium_suite\\demo5_ios_nativeapp.robot","*../appium_suite/demo5_ios_nativeapp.robot","*TC2","*Create Dictionary","*BuiltIn","*<p>Creates and returns a dictionary based on the given <code>items\x3c/code>.\x3c/p>","*buildName=khan lt7, projectName=khan project lt7, userName=dinakaranbalaji1, accessKey=6yXRE4nK1fyvTHWA2kPD","*&amp;{dic}","*&amp;{dic} = { buildName=khan lt7 | projectName=khan project lt7 | userName=dinakaranbalaji1 | accessKey=6yXRE4nK1fyvTHWA2kPD }","*Open Application","*AppiumLibrary","eNq1UsFOwzAMvfMV1s5bI66oqzTBFYbEidOUNG5rLXWiON3E35OwTV3hzCVOnv2eo2fXodkHZAENjGfQIThqdSLPkDz0dEKGXQg0jSAYTxgreNZBG3KUCAV8Vzhzeg07ttGTBc0WaP+xhneHWhDaAdsj1BqGiN12NaQU5EmpntIwmar1o7oI3YJx3qhRS8KorG9FIatzzF2538SJucRr6aX1RsdeqtGumv/TrpVuahWahzpp4xCMjxbjdvW4KlAsh21qkz0tFtbK5OqM3OBXzdUf8AWljfSboC5qV8mIo094mKKbqZ8o82MxI5jrljLakb4jsZ/v96klSVKkNh1E7nq/LZjOnwW+/FRWRjDPPTs+5vlLATQD8SnLZxhjoq7sF8LgJYGjI+bNE3TdRqhntOAZq8U31I/TzTcnNerS","*remote_url=http://hub.browserstack.com/wd/hub, platformName=ios, deviceName=iPhone 11 Pro, app=bs://88a260eace592d6e515984c8375f7269bee518f2, platformVersion=13, bstack:options=${dic}","*Set Appium Timeout","*<p>Sets the timeout in seconds used by various keywords.\x3c/p>","*20s","*Wait Until Page Contains Element","*<p>Waits until element specified with `locator` appears on current page.\x3c/p>","*xpath=//XCUIElementTypeTextField[@name='test-Username']","*xpath criteria: //XCUIElementTypeTextField[@name='test-Username']","*Input Text","*<p>Types the given `text` into text field identified by `locator`.\x3c/p>","*xpath=//XCUIElementTypeTextField[@name='test-Username'], balaji","*Typing text 'balaji' into text field 'xpath=//XCUIElementTypeTextField[@name='test-Username']'","*Sleep","*<p>Pauses the test executed for the given time.\x3c/p>","*2s","*Slept 2 seconds","*Close Application","*<p>Closes the current application and also close webdriver session.\x3c/p>"]);
+window.output["strings"] = window.output["strings"].concat(["*","*Demo6 Ios Real","*/Users/balaji/Documents/Company/PythonWorkspace/robot_project_lt7/appium_suite/demo6_ios_real.robot","*../appium_suite/demo6_ios_real.robot","*TC1","*Open Application","*AppiumLibrary","eNq1UsFOwzAMvfMV1s5bI66oqzTBFYbEidOUNG5rLXWiON3E35OwTV3hzCVOnv2eo2fXodkHZAENjGfQIThqdSLPkDz0dEKGXQg0jSAYTxgreNZBG3KUCAV8Vzhzeg07ttGTBc0WaP+xhneHWhDaAdsj1BqGiN12NaQU5EmpntIwmar1o7oI3YJx3qhRS8KorG9FIatzzF2538SJucRr6aX1RsdeqtGumv/TrpVuahWahzpp4xCMjxbjdvW4KlAsh21qkz0tFtbK5OqM3OBXzdUf8AWljfSboC5qV8mIo094mKKbqZ8o82MxI5jrljLakb4jsZ/v96klSVKkNh1E7nq/LZjOnwW+/FRWRjDPPTs+5vlLATQD8SnLZxhjoq7sF8LgJYGjI+bNE3TdRqhntOAZq8U31I/TzTcnNerS","*remote_url=http://localhost:4723/wd/hub, platformName=ios, deviceName=iPhone 11, app=/Users/balaji/Documents/Company/ios app/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.app, platformVersion=15.5","*Set Appium Timeout","*<p>Sets the timeout in seconds used by various keywords.\x3c/p>","*20s","*Wait Until Page Contains Element","*<p>Waits until element specified with `locator` appears on current page.\x3c/p>","*xpath=//XCUIElementTypeTextField[@name='test-Username']","*xpath criteria: //XCUIElementTypeTextField[@name='test-Username']","*Input Text","*<p>Types the given `text` into text field identified by `locator`.\x3c/p>","*xpath=//XCUIElementTypeTextField[@name='test-Username'], standard_user","*Typing text 'standard_user' into text field 'xpath=//XCUIElementTypeTextField[@name='test-Username']'","*xpath=//*[@name='test-Password']","*xpath criteria: //*[@name='test-Password']","*xpath=//*[@name='test-Password'], secret_sauce","*Typing text 'secret_sauce' into text field 'xpath=//*[@name='test-Password']'","*Click Element","*<p>Click element identified by `locator`.\x3c/p>","*xpath=//*[@name='test-LOGIN']","*Clicking element 'xpath=//*[@name='test-LOGIN']'.","*xpath criteria: //*[@name='test-LOGIN']","*xpath=//*[@name='test-ADD TO CART']","eNqrKEgsyVBILsosSS3KTLRS0NfXinbIS8xNtVUvSS0u0XV0cVEI8VdwdgwKUY/lqiBFNQBdzhzN","*Clicking element 'xpath=//*[@name='test-ADD TO CART']'.","*xpath criteria: //*[@name='test-ADD TO CART']","*xpath=//XCUIElementTypeOther[@name=\"test-Cart\"]","*xpath criteria: //XCUIElementTypeOther[@name=\"test-Cart\"]","*Clicking element 'xpath=//XCUIElementTypeOther[@name=\"test-Cart\"]'.","*Sleep","*BuiltIn","*<p>Pauses the test executed for the given time.\x3c/p>","*5s","*Slept 5 seconds","*Close Application","*<p>Closes the current application and also close webdriver session.\x3c/p>"]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:17","fail":0,"label":"All Tests","pass":1,"skip":0}],[],[{"elapsed":"00:00:18","fail":0,"id":"s1","label":"Demo5 Ios Nativeapp","name":"Demo5 Ios Nativeapp","pass":1,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:32","fail":0,"label":"All Tests","pass":1,"skip":0}],[],[{"elapsed":"00:00:32","fail":0,"id":"s1","label":"Demo6 Ios Real","name":"Demo6 Ios Real","pass":1,"skip":0}]];
 </script>
 <script type="text/javascript">
 window.output["errors"] = [];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1674544584289;
+window.output["baseMillis"] = 1674551953564;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 17575;
+window.output["generated"] = 32042;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
@@ -2127,7 +2123,7 @@ function addExecutionLog(main) {
     <div class="element-header closed" onclick="toggleKeyword('${id}')">
       <div class="element-header-left" title="${type}  {{if name}}{{html fullName}}  {{/if}}[${status}]">
         <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
-        <span class="label ${status.toLowerCase()}">${type}</span>
+        <span class="label keyword ${status.toLowerCase()}">${type}</span>
         <span>{{html assign}}</span>
         <span class="name"><span class="parent-name">{{html libname}}{{if libname}} . {{/if}}</span>{{html name}}</span>
         <span class="arg">{{html arguments}}</span>
@@ -2135,7 +2131,7 @@ function addExecutionLog(main) {
       <div class="element-header-right" onclick="stopPropagation(event)">
         <a class="expand" title="Expand all" href="javascript:expandAll('${id}')"></a>
         <a class="collapse" title="Collapse all" href="javascript:collapseAll('${id}')"></a>
-        <a class="link" title="Link to this item" href="#${id}" onclick="makeElementVisible('${id}')"></a>
+        <a class="link" title="Link to this keyword" href="#${id}" onclick="makeElementVisible('${id}')"></a>
       </div>
       <div class="element-header-toggle" title="Toggle visibility"></div>
     </div>
