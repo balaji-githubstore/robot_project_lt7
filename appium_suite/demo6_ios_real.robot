@@ -23,6 +23,7 @@ TC1
     Wait Until Page Contains Element    xpath=//*[@name='test-ADD TO CART']
     Click Element    xpath=//*[@name='test-ADD TO CART']
 
+
 #    Wait Until Page Contains Element    xpath=//XCUIElementTypeOther[@name="test-Cart"]
 #    Click Element    xpath=//XCUIElementTypeOther[@name="test-Cart"]
 
@@ -39,3 +40,28 @@ TC1
 #    Validate the title 'Shipping Information:' shown
     Sleep    5s
     [Teardown]      Close Application
+
+TC2 Scroll
+    Open Application    remote_url=http://localhost:4723/wd/hub
+    ...     platformName=ios
+    ...     deviceName=iPhone 11
+    ...     app=/Users/balaji/Documents/Company/ios app/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.app
+    ...     platformVersion=15.5
+    Set Appium Timeout    20s
+    Wait Until Page Contains Element    nsp=name=='test-Username'
+    Input Text    nsp=name=='test-Username'   standard_user
+
+    Wait Until Page Contains Element    nsp=name=='test-Password'
+    Input Text    nsp=name=='test-Password'    secret_sauce
+
+    Click Element    nsp=name=='test-LOGIN'
+
+    Hide Keyboard
+
+    #scroll using keywords
+#    Swipe By Percent    90    75    90    25
+
+    #scroll down using mobile commands
+    &{dic_arg}      Create Dictionary    direction=down
+    Execute Script    mobile: scroll    &{dic_arg}
+

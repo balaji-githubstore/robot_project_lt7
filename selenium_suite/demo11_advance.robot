@@ -79,3 +79,12 @@ TC7
 
    ${ele}    Get WebElement    xpath=//a[text()='Members Listing']
    Execute Javascript  arguments[0].click()     ARGUMENTS        ${ele}
+
+
+TC10
+    @{output}   Run Keyword And Ignore Error    Click Element    xpath=//a
+    Log To Console    ${output}
+    Log To Console    ${output}[0]
+    Log To Console    ${output}[1]
+    Log     ${output}
+    

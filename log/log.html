@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 4.1.3 (Python 3.10.2 on darwin)" name="Generator">
+<meta content="Robot Framework 6.0.2 (Python 3.10.2 on darwin)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all" type="text/css">
 /* Generic and misc styles */
@@ -318,6 +318,9 @@ th.stats-col-graph:hover {
     top: 0;
     padding: 3px;
     cursor: default;
+}
+.element-header .label {
+    margin-right: 0.5em;
 }
 .name {
     font-weight: bold;
@@ -966,6 +969,7 @@ window.model = (function () {
     }
     function Keyword(data) {
         var kw = createModelObject(data);
+        var flatTypes = ['RETURN', 'BREAK', 'CONTINUE'];
         kw.libname = data.libname;
         kw.fullName = (kw.libname ? kw.libname + '.' : '') + kw.name;
         kw.type = data.type;
@@ -1350,8 +1354,8 @@ window.testdata = function () {
     var _statistics = null;
     var LEVELS = ['TRACE', 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FAIL', 'SKIP'];
     var STATUSES = ['FAIL', 'PASS', 'SKIP', 'NOT RUN'];
-    var KEYWORD_TYPES = ['KEYWORD', 'SETUP', 'TEARDOWN', 'FOR', 'VAR', 'IF', 'ELSE IF', 'ELSE'];
-    var MESSAGE_TYPE = 8;
+    var KEYWORD_TYPES = ['KEYWORD', 'SETUP', 'TEARDOWN', 'FOR', 'ITERATION', 'IF', 'ELSE IF', 'ELSE', 'RETURN',
+                         'TRY', 'EXCEPT', 'FINALLY', 'WHILE', 'CONTINUE', 'BREAK'];
     function addElement(elem) {
         if (!elem.id)
             elem.id = uniqueId();
@@ -1372,10 +1376,10 @@ window.testdata = function () {
                 elapsed];
     }
     function createMessage(element, strings) {
-        return model.Message(LEVELS[element[2]],
-                             util.timestamp(element[1]),
-                             strings.get(element[3]),
-                             strings.get(element[4]));
+        return model.Message(LEVELS[element[1]],
+                             util.timestamp(element[0]),
+                             strings.get(element[2]),
+                             strings.get(element[3]));
     }
     function parseStatus(stats) {
         return STATUSES[stats[0]];
@@ -1386,7 +1390,7 @@ window.testdata = function () {
         };
     }
     function createBodyItem(parent, element, strings, index) {
-        if (element[0] == MESSAGE_TYPE)
+        if (element.length < 5)
             return createMessage(element, strings);
         var messages = util.filter(parent.children(), function (child) {
             return child.type == 'message';
@@ -1799,25 +1803,25 @@ function stopPropagation(event) {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[1,0,32036],[],[[4,0,0,[],[1,182,31853],[[0,5,6,0,7,8,0,0,[1,182,6453],[]],[0,9,6,0,10,11,0,0,[1,6635,1],[]],[0,12,6,0,13,14,0,0,[1,6636,595],[[8,7229,2,15]]],[0,16,6,0,17,18,0,0,[1,7231,1451],[[8,7233,2,19],[8,8682,2,15]]],[0,12,6,0,13,20,0,0,[1,8683,988],[[8,9670,2,21]]],[0,16,6,0,17,22,0,0,[1,9671,4173],[[8,9673,2,23],[8,13844,2,21]]],[0,24,6,0,25,26,0,0,[1,13845,1052],[[8,13846,2,27],[8,14896,2,28]]],[0,12,6,0,13,29,0,0,[1,14897,3181],[[8,18078,2,30]]],[0,24,6,0,25,29,0,0,[1,18079,2329],[[8,18080,2,31],[8,20407,2,32]]],[0,12,6,0,13,29,0,0,[1,20408,1371],[[8,21779,2,32]]],[0,24,6,0,25,29,0,0,[1,21779,1659],[[8,21781,2,31],[8,23438,2,32]]],[0,12,6,0,13,33,0,0,[1,23439,1124],[[8,24563,2,34]]],[0,24,6,0,25,33,0,0,[1,24564,1401],[[8,24565,2,35],[8,25964,2,34]]],[0,36,37,0,38,39,0,0,[1,25965,5001],[[8,30966,2,40]]],[2,41,6,0,42,0,0,0,[1,30967,1067],[]]]]],[],[1,1,0,0]];
+window.output["suite"] = [1,2,3,4,[],[0,0,56023],[],[[5,0,0,[],[0,173,55848,6],[[0,7,8,0,9,10,0,0,[1,174,53871],[]],[0,11,8,0,12,13,0,0,[1,54049,3],[]],[0,14,8,0,15,16,0,0,[0,54052,876],[[54924,2,17],[54927,2,18],[54927,5,6]]],[0,19,8,0,20,16,0,0,[3,54928,1],[]],[0,14,8,0,15,21,0,0,[3,54929,0],[]],[0,19,8,0,20,21,0,0,[3,54929,1],[]],[3,22,0,0,0,0,0,0,[3,54930,4],[[4,23,0,0,0,0,0,0,[3,54931,3],[[0,24,25,0,26,27,28,0,[3,54932,0],[]],[0,29,8,0,30,31,0,0,[3,54933,0],[]],[0,32,25,0,33,34,0,0,[3,54933,1],[]]]]]],[0,35,25,0,36,37,0,0,[3,54934,0],[]],[2,38,8,0,39,0,0,0,[1,54935,1086],[]]]]],[],[1,0,1,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*Demo6 Ios Real","*/Users/balaji/Documents/Company/PythonWorkspace/robot_project_lt7/appium_suite/demo6_ios_real.robot","*../appium_suite/demo6_ios_real.robot","*TC1","*Open Application","*AppiumLibrary","eNq1UsFOwzAMvfMV1s5bI66oqzTBFYbEidOUNG5rLXWiON3E35OwTV3hzCVOnv2eo2fXodkHZAENjGfQIThqdSLPkDz0dEKGXQg0jSAYTxgreNZBG3KUCAV8Vzhzeg07ttGTBc0WaP+xhneHWhDaAdsj1BqGiN12NaQU5EmpntIwmar1o7oI3YJx3qhRS8KorG9FIatzzF2538SJucRr6aX1RsdeqtGumv/TrpVuahWahzpp4xCMjxbjdvW4KlAsh21qkz0tFtbK5OqM3OBXzdUf8AWljfSboC5qV8mIo094mKKbqZ8o82MxI5jrljLakb4jsZ/v96klSVKkNh1E7nq/LZjOnwW+/FRWRjDPPTs+5vlLATQD8SnLZxhjoq7sF8LgJYGjI+bNE3TdRqhntOAZq8U31I/TzTcnNerS","*remote_url=http://localhost:4723/wd/hub, platformName=ios, deviceName=iPhone 11, app=/Users/balaji/Documents/Company/ios app/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.app, platformVersion=15.5","*Set Appium Timeout","*<p>Sets the timeout in seconds used by various keywords.\x3c/p>","*20s","*Wait Until Page Contains Element","*<p>Waits until element specified with `locator` appears on current page.\x3c/p>","*xpath=//XCUIElementTypeTextField[@name='test-Username']","*xpath criteria: //XCUIElementTypeTextField[@name='test-Username']","*Input Text","*<p>Types the given `text` into text field identified by `locator`.\x3c/p>","*xpath=//XCUIElementTypeTextField[@name='test-Username'], standard_user","*Typing text 'standard_user' into text field 'xpath=//XCUIElementTypeTextField[@name='test-Username']'","*xpath=//*[@name='test-Password']","*xpath criteria: //*[@name='test-Password']","*xpath=//*[@name='test-Password'], secret_sauce","*Typing text 'secret_sauce' into text field 'xpath=//*[@name='test-Password']'","*Click Element","*<p>Click element identified by `locator`.\x3c/p>","*xpath=//*[@name='test-LOGIN']","*Clicking element 'xpath=//*[@name='test-LOGIN']'.","*xpath criteria: //*[@name='test-LOGIN']","*xpath=//*[@name='test-ADD TO CART']","eNqrKEgsyVBILsosSS3KTLRS0NfXinbIS8xNtVUvSS0u0XV0cVEI8VdwdgwKUY/lqiBFNQBdzhzN","*Clicking element 'xpath=//*[@name='test-ADD TO CART']'.","*xpath criteria: //*[@name='test-ADD TO CART']","*xpath=//XCUIElementTypeOther[@name=\"test-Cart\"]","*xpath criteria: //XCUIElementTypeOther[@name=\"test-Cart\"]","*Clicking element 'xpath=//XCUIElementTypeOther[@name=\"test-Cart\"]'.","*Sleep","*BuiltIn","*<p>Pauses the test executed for the given time.\x3c/p>","*5s","*Slept 5 seconds","*Close Application","*<p>Closes the current application and also close webdriver session.\x3c/p>"]);
+window.output["strings"] = window.output["strings"].concat(["*","*Demo7 Ios","*/Users/balaji/Documents/Company/PythonWorkspace/robot_project_lt7/appium_suite/demo7_ios.robot","*../appium_suite/demo7_ios.robot","*<p>IOS APP\x3c/p>","*TC2 Scroll Using Keyword When Count More than one","*BrokenPipeError: [Errno 32] Broken pipe","*Open Application","*AppiumLibrary","eNq1UsFOwzAMvfMV1s5bI66oqzTBFYbEidOUNG5rLXWiON3E35OwTV3hzCVOnv2eo2fXodkHZAENjGfQIThqdSLPkDz0dEKGXQg0jSAYTxgreNZBG3KUCAV8Vzhzeg07ttGTBc0WaP+xhneHWhDaAdsj1BqGiN12NaQU5EmpntIwmar1o7oI3YJx3qhRS8KorG9FIatzzF2538SJucRr6aX1RsdeqtGumv/TrpVuahWahzpp4xCMjxbjdvW4KlAsh21qkz0tFtbK5OqM3OBXzdUf8AWljfSboC5qV8mIo094mKKbqZ8o82MxI5jrljLakb4jsZ/v96klSVKkNh1E7nq/LZjOnwW+/FRWRjDPPTs+5vlLATQD8SnLZxhjoq7sF8LgJYGjI+bNE3TdRqhntOAZq8U31I/TzTcnNerS","*remote_url=http://localhost:4723/wd/hub, platformName=ios, deviceName=iPhone 11, bundleId=com.apple.Health, platformVersion=15.5","*Set Appium Timeout","*<p>Sets the timeout in seconds used by various keywords.\x3c/p>","*20s","*Wait Until Page Contains Element","*<p>Waits until element specified with `locator` appears on current page.\x3c/p>","*xpath=//*[@name='Edit']","*xpath criteria: //*[@name='Edit']","eNptkm1r2zAQx9/7Uxx9lUAjxXabDr9bTQorpQtdug3GMLJ9cdTIkjidW/LtK3v0ga6v7ul/3P1OIlc7LiBbZvlimS6yM0gvivSsWOZwvy3B67aA8+xLeg4L+EWaEXbkeqCxDdhBqzzMqrsx3CrqkEvX9/MoXv8u15vtt++30R/VjSNfmVBFi6LFeugqFZsZ6bMU7wlVG5I1kSN4ioO17aDHEFSHIkm2pBqsVXOAWe8CA2GDlqFRxoBRgedFAnClDcKJvA9IQdbKqActb3RNio7yq/dGN4q1s/Bj8N4Ry2vkS1LaBrk5lntFfbmOd0lFLr0ZujE/Ye9I9fjk6LDQltEY/SCNrj/UIqp8RNtGtFZ+5Jf/88tP+YU/npyC0RYhW61OQdvpFq+CCAkQOLq92Jkh7GfzN+4X1KuXnUYu3jsrXreUP+Np4gmCzEW6nDD8JJnC4JoD8rsdLrL8bYdpNiEPZCGg2Ylq1IsQoWf1PLkkd0C70R6nNyzgT7TWQZ79hX+1+Lk8PgN3r95w","*Click Element","*<p>Click element identified by `locator`.\x3c/p>","*xpath=//*[@name='All']","*${i} IN RANGE [ 1 | 999 ]","*${i} = ","*Run Keyword And Ignore Error","*BuiltIn","*<p>Runs the given keyword with the given arguments and ignores possible error.\x3c/p>","*Click Element, xpath=//*[@name='Selenium']","*@{output}","*Swipe By Percent","*<p>Swipe from one percent of the screen to another percent, for an optional duration. Normal swipe fails to scale for different screen resolutions, this can be avoided using percent.\x3c/p>","*90, 75, 90, 25","*Exit For Loop If","*<p>Stops executing the enclosing FOR loop if the <code>condition\x3c/code> is true.\x3c/p>","*'${output}[0]'=='PASS'","*Sleep","*<p>Pauses the test executed for the given time.\x3c/p>","*2s","*Close Application","*<p>Closes the current application and also close webdriver session.\x3c/p>"]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:32","fail":0,"label":"All Tests","pass":1,"skip":0}],[],[{"elapsed":"00:00:32","fail":0,"id":"s1","label":"Demo6 Ios Real","name":"Demo6 Ios Real","pass":1,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:56","fail":1,"label":"All Tests","pass":0,"skip":0}],[],[{"elapsed":"00:00:56","fail":1,"id":"s1","label":"Demo7 Ios","name":"Demo7 Ios","pass":0,"skip":0}]];
 </script>
 <script type="text/javascript">
 window.output["errors"] = [];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1674551953564;
+window.output["baseMillis"] = 1674560589529;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 32042;
+window.output["generated"] = 56035;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
@@ -2123,7 +2127,7 @@ function addExecutionLog(main) {
     <div class="element-header closed" onclick="toggleKeyword('${id}')">
       <div class="element-header-left" title="${type}  {{if name}}{{html fullName}}  {{/if}}[${status}]">
         <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
-        <span class="label keyword ${status.toLowerCase()}">${type}</span>
+        <span class="label ${status.toLowerCase()}">${type}</span>
         <span>{{html assign}}</span>
         <span class="name"><span class="parent-name">{{html libname}}{{if libname}} . {{/if}}</span>{{html name}}</span>
         <span class="arg">{{html arguments}}</span>
@@ -2131,7 +2135,7 @@ function addExecutionLog(main) {
       <div class="element-header-right" onclick="stopPropagation(event)">
         <a class="expand" title="Expand all" href="javascript:expandAll('${id}')"></a>
         <a class="collapse" title="Collapse all" href="javascript:collapseAll('${id}')"></a>
-        <a class="link" title="Link to this keyword" href="#${id}" onclick="makeElementVisible('${id}')"></a>
+        <a class="link" title="Link to this item" href="#${id}" onclick="makeElementVisible('${id}')"></a>
       </div>
       <div class="element-header-toggle" title="Toggle visibility"></div>
     </div>

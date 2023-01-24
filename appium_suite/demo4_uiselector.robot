@@ -97,6 +97,7 @@ TC3 Swipe UiSelector
     #scroll to South Asia
     &{dic_arg}      Create Dictionary       strategy=-android uiautomator
     ...  selector=UiSelector().text("South Asia")
+
     Execute Script    mobile: scroll    &{dic_arg}
 
     #click on south asia

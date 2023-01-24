@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.3 (Python 3.10.2 on darwin)" generated="20230124 14:49:13.562" rpa="false" schemaversion="2">
-<suite id="s1" name="Demo6 Ios Real" source="/Users/balaji/Documents/Company/PythonWorkspace/robot_project_lt7/appium_suite/demo6_ios_real.robot">
-<test id="s1-t1" name="TC1">
+<robot generator="Robot 6.0.2 (Python 3.10.2 on darwin)" generated="20230124 17:13:09.528" rpa="false" schemaversion="3">
+<suite id="s1" name="Demo7 Ios" source="/Users/balaji/Documents/Company/PythonWorkspace/robot_project_lt7/appium_suite/demo7_ios.robot">
+<test id="s1-t1" name="TC2 Scroll Using Keyword When Count More than one" line="47">
 <kw name="Open Application" library="AppiumLibrary">
 <arg>remote_url=http://localhost:4723/wd/hub</arg>
 <arg>platformName=ios</arg>
 <arg>deviceName=iPhone 11</arg>
-<arg>app=/Users/balaji/Documents/Company/ios app/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.app</arg>
+<arg>bundleId=com.apple.Health</arg>
 <arg>platformVersion=15.5</arg>
 <doc>Opens a new application to given Appium server.
 Capabilities of appium server, Android and iOS,
@@ -15,110 +15,97 @@ Please check https://github.com/appium/appium/blob/master/docs/en/writing-runnin
 | remote_url          | Yes    | Appium server url |
 | alias               | no     | alias             |
 | strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
-<status status="PASS" starttime="20230124 14:49:13.746" endtime="20230124 14:49:20.199"/>
+<status status="PASS" starttime="20230124 17:13:09.703" endtime="20230124 17:14:03.574"/>
 </kw>
 <kw name="Set Appium Timeout" library="AppiumLibrary">
 <arg>20s</arg>
 <doc>Sets the timeout in seconds used by various keywords.</doc>
-<status status="PASS" starttime="20230124 14:49:20.199" endtime="20230124 14:49:20.200"/>
+<status status="PASS" starttime="20230124 17:14:03.578" endtime="20230124 17:14:03.581"/>
 </kw>
 <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
-<arg>xpath=//XCUIElementTypeTextField[@name='test-Username']</arg>
+<arg>xpath=//*[@name='Edit']</arg>
 <doc>Waits until element specified with `locator` appears on current page.</doc>
-<msg timestamp="20230124 14:49:20.793" level="INFO">xpath criteria: //XCUIElementTypeTextField[@name='test-Username']</msg>
-<status status="PASS" starttime="20230124 14:49:20.200" endtime="20230124 14:49:20.795"/>
-</kw>
-<kw name="Input Text" library="AppiumLibrary">
-<arg>xpath=//XCUIElementTypeTextField[@name='test-Username']</arg>
-<arg>standard_user</arg>
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<msg timestamp="20230124 14:49:20.797" level="INFO">Typing text 'standard_user' into text field 'xpath=//XCUIElementTypeTextField[@name='test-Username']'</msg>
-<msg timestamp="20230124 14:49:22.246" level="INFO">xpath criteria: //XCUIElementTypeTextField[@name='test-Username']</msg>
-<status status="PASS" starttime="20230124 14:49:20.795" endtime="20230124 14:49:22.246"/>
-</kw>
-<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='test-Password']</arg>
-<doc>Waits until element specified with `locator` appears on current page.</doc>
-<msg timestamp="20230124 14:49:23.234" level="INFO">xpath criteria: //*[@name='test-Password']</msg>
-<status status="PASS" starttime="20230124 14:49:22.247" endtime="20230124 14:49:23.235"/>
-</kw>
-<kw name="Input Text" library="AppiumLibrary">
-<arg>xpath=//*[@name='test-Password']</arg>
-<arg>secret_sauce</arg>
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<msg timestamp="20230124 14:49:23.237" level="INFO">Typing text 'secret_sauce' into text field 'xpath=//*[@name='test-Password']'</msg>
-<msg timestamp="20230124 14:49:27.408" level="INFO">xpath criteria: //*[@name='test-Password']</msg>
-<status status="PASS" starttime="20230124 14:49:23.235" endtime="20230124 14:49:27.408"/>
+<msg timestamp="20230124 17:14:04.453" level="INFO">xpath criteria: //*[@name='Edit']</msg>
+<msg timestamp="20230124 17:14:04.456" level="INFO">robot: 2023-01-24 17:14:03 UTC pid: 52815 - Write from robot to dap (_RobotTargetComm) - EXCEPTION - robocorp_ls_core.debug_adapter_core.debug_adapter_threads
+Error writing message.
+
+Traceback (most recent call last):
+  File "/Users/balaji/Library/Application Support/JetBrains/PyCharmCE2021.3/plugins/robotframework-intellij/lib/robotframework_ls/vendored/robocorp_ls_core/debug_adapter_core/debug_adapter_threads.py", line 266, in writer_thread
+    stream.flush()
+  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 723, in write
+    return self._sock.send(b)
+BrokenPipeError: [Errno 32] Broken pipe</msg>
+<msg timestamp="20230124 17:14:04.456" level="FAIL">BrokenPipeError: [Errno 32] Broken pipe</msg>
+<status status="FAIL" starttime="20230124 17:14:03.581" endtime="20230124 17:14:04.457"/>
 </kw>
 <kw name="Click Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='test-LOGIN']</arg>
+<arg>xpath=//*[@name='Edit']</arg>
 <doc>Click element identified by `locator`.</doc>
-<msg timestamp="20230124 14:49:27.410" level="INFO">Clicking element 'xpath=//*[@name='test-LOGIN']'.</msg>
-<msg timestamp="20230124 14:49:28.460" level="INFO">xpath criteria: //*[@name='test-LOGIN']</msg>
-<status status="PASS" starttime="20230124 14:49:27.409" endtime="20230124 14:49:28.461"/>
+<status status="NOT RUN" starttime="20230124 17:14:04.457" endtime="20230124 17:14:04.458"/>
 </kw>
 <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='test-ADD TO CART']</arg>
+<arg>xpath=//*[@name='All']</arg>
 <doc>Waits until element specified with `locator` appears on current page.</doc>
-<msg timestamp="20230124 14:49:31.642" level="INFO">xpath criteria: //*[@name='test-ADD TO CART']
-xpath criteria: //*[@name='test-ADD TO CART']</msg>
-<status status="PASS" starttime="20230124 14:49:28.461" endtime="20230124 14:49:31.642"/>
+<status status="NOT RUN" starttime="20230124 17:14:04.458" endtime="20230124 17:14:04.458"/>
 </kw>
 <kw name="Click Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='test-ADD TO CART']</arg>
+<arg>xpath=//*[@name='All']</arg>
 <doc>Click element identified by `locator`.</doc>
-<msg timestamp="20230124 14:49:31.644" level="INFO">Clicking element 'xpath=//*[@name='test-ADD TO CART']'.</msg>
-<msg timestamp="20230124 14:49:33.971" level="INFO">xpath criteria: //*[@name='test-ADD TO CART']</msg>
-<status status="PASS" starttime="20230124 14:49:31.643" endtime="20230124 14:49:33.972"/>
+<status status="NOT RUN" starttime="20230124 17:14:04.458" endtime="20230124 17:14:04.459"/>
 </kw>
-<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='test-ADD TO CART']</arg>
-<doc>Waits until element specified with `locator` appears on current page.</doc>
-<msg timestamp="20230124 14:49:35.343" level="INFO">xpath criteria: //*[@name='test-ADD TO CART']</msg>
-<status status="PASS" starttime="20230124 14:49:33.972" endtime="20230124 14:49:35.343"/>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>1</value>
+<value>999</value>
+<iter>
+<var name="${i}"/>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<var>@{output}</var>
+<arg>Click Element</arg>
+<arg>xpath=//*[@name='Selenium']</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="NOT RUN" starttime="20230124 17:14:04.461" endtime="20230124 17:14:04.461"/>
 </kw>
-<kw name="Click Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='test-ADD TO CART']</arg>
-<doc>Click element identified by `locator`.</doc>
-<msg timestamp="20230124 14:49:35.345" level="INFO">Clicking element 'xpath=//*[@name='test-ADD TO CART']'.</msg>
-<msg timestamp="20230124 14:49:37.002" level="INFO">xpath criteria: //*[@name='test-ADD TO CART']</msg>
-<status status="PASS" starttime="20230124 14:49:35.343" endtime="20230124 14:49:37.002"/>
+<kw name="Swipe By Percent" library="AppiumLibrary">
+<arg>90</arg>
+<arg>75</arg>
+<arg>90</arg>
+<arg>25</arg>
+<doc>Swipe from one percent of the screen to another percent, for an optional duration.
+Normal swipe fails to scale for different screen resolutions, this can be avoided using percent.</doc>
+<status status="NOT RUN" starttime="20230124 17:14:04.462" endtime="20230124 17:14:04.462"/>
 </kw>
-<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
-<arg>xpath=//XCUIElementTypeOther[@name="test-Cart"]</arg>
-<doc>Waits until element specified with `locator` appears on current page.</doc>
-<msg timestamp="20230124 14:49:38.127" level="INFO">xpath criteria: //XCUIElementTypeOther[@name="test-Cart"]</msg>
-<status status="PASS" starttime="20230124 14:49:37.003" endtime="20230124 14:49:38.127"/>
+<kw name="Exit For Loop If" library="BuiltIn">
+<arg>'${output}[0]'=='PASS'</arg>
+<doc>Stops executing the enclosing FOR loop if the ``condition`` is true.</doc>
+<status status="NOT RUN" starttime="20230124 17:14:04.462" endtime="20230124 17:14:04.463"/>
 </kw>
-<kw name="Click Element" library="AppiumLibrary">
-<arg>xpath=//XCUIElementTypeOther[@name="test-Cart"]</arg>
-<doc>Click element identified by `locator`.</doc>
-<msg timestamp="20230124 14:49:38.129" level="INFO">Clicking element 'xpath=//XCUIElementTypeOther[@name="test-Cart"]'.</msg>
-<msg timestamp="20230124 14:49:39.528" level="INFO">xpath criteria: //XCUIElementTypeOther[@name="test-Cart"]</msg>
-<status status="PASS" starttime="20230124 14:49:38.128" endtime="20230124 14:49:39.529"/>
-</kw>
+<status status="NOT RUN" starttime="20230124 17:14:04.460" endtime="20230124 17:14:04.463"/>
+</iter>
+<status status="NOT RUN" starttime="20230124 17:14:04.459" endtime="20230124 17:14:04.463"/>
+</for>
 <kw name="Sleep" library="BuiltIn">
-<arg>5s</arg>
+<arg>2s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20230124 14:49:44.530" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20230124 14:49:39.529" endtime="20230124 14:49:44.530"/>
+<status status="NOT RUN" starttime="20230124 17:14:04.463" endtime="20230124 17:14:04.463"/>
 </kw>
 <kw name="Close Application" library="AppiumLibrary" type="TEARDOWN">
 <doc>Closes the current application and also close webdriver session.</doc>
-<status status="PASS" starttime="20230124 14:49:44.531" endtime="20230124 14:49:45.598"/>
+<status status="PASS" starttime="20230124 17:14:04.464" endtime="20230124 17:14:05.550"/>
 </kw>
-<status status="PASS" starttime="20230124 14:49:13.746" endtime="20230124 14:49:45.599"/>
+<status status="FAIL" starttime="20230124 17:13:09.702" endtime="20230124 17:14:05.550">BrokenPipeError: [Errno 32] Broken pipe</status>
 </test>
-<status status="PASS" starttime="20230124 14:49:13.564" endtime="20230124 14:49:45.600"/>
+<doc>IOS APP</doc>
+<status status="FAIL" starttime="20230124 17:13:09.529" endtime="20230124 17:14:05.552"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Demo6 Ios Real">Demo6 Ios Real</stat>
+<stat pass="0" fail="1" skip="0" id="s1" name="Demo7 Ios">Demo7 Ios</stat>
 </suite>
 </statistics>
 <errors>
