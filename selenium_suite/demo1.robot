@@ -1,6 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
-
+Test Teardown   Close Browser
 *** Test Cases ***
 TC1
     Open Browser    url=http://google.com/      browser=edge
