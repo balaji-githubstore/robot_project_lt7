@@ -1,111 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.10.2 on darwin)" generated="20230124 17:13:09.528" rpa="false" schemaversion="3">
-<suite id="s1" name="Demo7 Ios" source="/Users/balaji/Documents/Company/PythonWorkspace/robot_project_lt7/appium_suite/demo7_ios.robot">
-<test id="s1-t1" name="TC2 Scroll Using Keyword When Count More than one" line="47">
-<kw name="Open Application" library="AppiumLibrary">
-<arg>remote_url=http://localhost:4723/wd/hub</arg>
-<arg>platformName=ios</arg>
-<arg>deviceName=iPhone 11</arg>
-<arg>bundleId=com.apple.Health</arg>
-<arg>platformVersion=15.5</arg>
-<doc>Opens a new application to given Appium server.
-Capabilities of appium server, Android and iOS,
-Please check https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/server-args.md
-| *Option*            | *Man.* | *Description*     |
-| remote_url          | Yes    | Appium server url |
-| alias               | no     | alias             |
-| strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
-<status status="PASS" starttime="20230124 17:13:09.703" endtime="20230124 17:14:03.574"/>
+<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230127 10:24:48.109" rpa="false" schemaversion="3">
+<suite id="s1" name="Demo2" source="C:\Mine\Company\LT7\robot_project\api_suite\demo2.robot">
+<kw name="Create Session" library="RequestsLibrary" type="SETUP">
+<arg>alias=petshop</arg>
+<arg>url=https://petstore.swagger.io/v2</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230127 10:24:48.262" level="INFO">Creating Session using : alias=petshop, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230127 10:24:48.262" endtime="20230127 10:24:48.262"/>
 </kw>
-<kw name="Set Appium Timeout" library="AppiumLibrary">
-<arg>20s</arg>
-<doc>Sets the timeout in seconds used by various keywords.</doc>
-<status status="PASS" starttime="20230124 17:14:03.578" endtime="20230124 17:14:03.581"/>
+<test id="s1-t1" name="TC3" line="17">
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>alias=petshop</arg>
+<arg>url=pet/findByStatus?status=sold</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230127 10:24:49.137" level="INFO">GET Request : url=https://petstore.swagger.io/v2/pet/findByStatus?status=sold 
+ path_url=/v2/pet/findByStatus?status=sold 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230127 10:24:49.137" level="INFO">GET Response : url=https://petstore.swagger.io/v2/pet/findByStatus?status=sold 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 27 Jan 2023 04:54:49 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body=[{"id":1122338506818,"category":{"id":5436,"name":"soaspec_test"},"name":"Charlie","photoUrls":["string"],"tags":[{"id":1,"name":"string"}],"status":"sold"},{"id":9223372016900013315,"name":"Charlie","photoUrls":[],"tags":[],"status":"sold"},{"id":15435006001660,"category":{"id":2432432,"name":"category_name"},"name":"5239423","photoUrls":["test URL"],"tags":[{"id":5,"name":"fact tag"}],"status":"sold"},{"id":9223372016900013376,"category":{"id":-12451059,"name":"pariatur"},"name":"doggie","photoUrls":["proident reprehenderit","aliqua nisi"],"tags":[{"id":-51074348,"name":"nisi nulla"},{"id":85662688,"name":"deserunt incididunt laboris"}],"status":"sold"},{"id":13,"category":{"id":0,"name":"cats"},"photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"sold"},{"id":9223372016900013961,"category":{"id":-41236579,"name":"proident eu"},"name":"doggie","photoUrls":["http://img2.joyreactor.cc/pics/post/%D0%BA%D1%80%D0%B0%D1%81%D0%B0%D0%B2%D0%B8%D1%86%D0%B0-%D0%BF%D0%B5%D1%81%D0%BE%D1%87%D0%BD%D0%B8%D1%86%D0%B0-2720769.jpeg"],"tags":[{"id":75889240,"name":"nostrud pariatur ullamco"},{"id":34200791,"name":"veniam incididunt do"}],"status":"sold"}] 
+ </msg>
+<msg timestamp="20230127 10:24:49.137" level="INFO">C:\Program Files\Python310\lib\site-packages\urllib3\connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'petstore.swagger.io'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230127 10:24:49.137" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230127 10:24:48.262" endtime="20230127 10:24:49.137"/>
 </kw>
-<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='Edit']</arg>
-<doc>Waits until element specified with `locator` appears on current page.</doc>
-<msg timestamp="20230124 17:14:04.453" level="INFO">xpath criteria: //*[@name='Edit']</msg>
-<msg timestamp="20230124 17:14:04.456" level="INFO">robot: 2023-01-24 17:14:03 UTC pid: 52815 - Write from robot to dap (_RobotTargetComm) - EXCEPTION - robocorp_ls_core.debug_adapter_core.debug_adapter_threads
-Error writing message.
-
-Traceback (most recent call last):
-  File "/Users/balaji/Library/Application Support/JetBrains/PyCharmCE2021.3/plugins/robotframework-intellij/lib/robotframework_ls/vendored/robocorp_ls_core/debug_adapter_core/debug_adapter_threads.py", line 266, in writer_thread
-    stream.flush()
-  File "/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socket.py", line 723, in write
-    return self._sock.send(b)
-BrokenPipeError: [Errno 32] Broken pipe</msg>
-<msg timestamp="20230124 17:14:04.456" level="FAIL">BrokenPipeError: [Errno 32] Broken pipe</msg>
-<status status="FAIL" starttime="20230124 17:14:03.581" endtime="20230124 17:14:04.457"/>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230127 10:24:49.137" endtime="20230127 10:24:49.137"/>
 </kw>
-<kw name="Click Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='Edit']</arg>
-<doc>Click element identified by `locator`.</doc>
-<status status="NOT RUN" starttime="20230124 17:14:04.457" endtime="20230124 17:14:04.458"/>
+<kw name="Log" library="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230127 10:24:49.137" level="INFO">[{'id': 1122338506818, 'category': {'id': 5436, 'name': 'soaspec_test'}, 'name': 'Charlie', 'photoUrls': ['string'], 'tags': [{'id': 1, 'name': 'string'}], 'status': 'sold'}, {'id': 9223372016900013315, 'name': 'Charlie', 'photoUrls': [], 'tags': [], 'status': 'sold'}, {'id': 15435006001660, 'category': {'id': 2432432, 'name': 'category_name'}, 'name': '5239423', 'photoUrls': ['test URL'], 'tags': [{'id': 5, 'name': 'fact tag'}], 'status': 'sold'}, {'id': 9223372016900013376, 'category': {'id': -12451059, 'name': 'pariatur'}, 'name': 'doggie', 'photoUrls': ['proident reprehenderit', 'aliqua nisi'], 'tags': [{'id': -51074348, 'name': 'nisi nulla'}, {'id': 85662688, 'name': 'deserunt incididunt laboris'}], 'status': 'sold'}, {'id': 13, 'category': {'id': 0, 'name': 'cats'}, 'photoUrls': ['string'], 'tags': [{'id': 0, 'name': 'string'}], 'status': 'sold'}, {'id': 9223372016900013961, 'category': {'id': -41236579, 'name': 'proident eu'}, 'name': 'doggie', 'photoUrls': ['http://img2.joyreactor.cc/pics/post/%D0%BA%D1%80%D0%B0%D1%81%D0%B0%D0%B2%D0%B8%D1%86%D0%B0-%D0%BF%D0%B5%D1%81%D0%BE%D1%87%D0%BD%D0%B8%D1%86%D0%B0-2720769.jpeg'], 'tags': [{'id': 75889240, 'name': 'nostrud pariatur ullamco'}, {'id': 34200791, 'name': 'veniam incididunt do'}], 'status': 'sold'}]</msg>
+<status status="PASS" starttime="20230127 10:24:49.137" endtime="20230127 10:24:49.137"/>
 </kw>
-<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='All']</arg>
-<doc>Waits until element specified with `locator` appears on current page.</doc>
-<status status="NOT RUN" starttime="20230124 17:14:04.458" endtime="20230124 17:14:04.458"/>
+<kw name="Log" library="BuiltIn">
+<arg>${response.json()}[0][id]</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230127 10:24:49.137" level="INFO">1122338506818</msg>
+<status status="PASS" starttime="20230127 10:24:49.137" endtime="20230127 10:24:49.137"/>
 </kw>
-<kw name="Click Element" library="AppiumLibrary">
-<arg>xpath=//*[@name='All']</arg>
-<doc>Click element identified by `locator`.</doc>
-<status status="NOT RUN" starttime="20230124 17:14:04.458" endtime="20230124 17:14:04.459"/>
-</kw>
-<for flavor="IN RANGE">
-<var>${i}</var>
-<value>1</value>
-<value>999</value>
-<iter>
-<var name="${i}"/>
-<kw name="Run Keyword And Ignore Error" library="BuiltIn">
-<var>@{output}</var>
-<arg>Click Element</arg>
-<arg>xpath=//*[@name='Selenium']</arg>
-<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<status status="NOT RUN" starttime="20230124 17:14:04.461" endtime="20230124 17:14:04.461"/>
-</kw>
-<kw name="Swipe By Percent" library="AppiumLibrary">
-<arg>90</arg>
-<arg>75</arg>
-<arg>90</arg>
-<arg>25</arg>
-<doc>Swipe from one percent of the screen to another percent, for an optional duration.
-Normal swipe fails to scale for different screen resolutions, this can be avoided using percent.</doc>
-<status status="NOT RUN" starttime="20230124 17:14:04.462" endtime="20230124 17:14:04.462"/>
-</kw>
-<kw name="Exit For Loop If" library="BuiltIn">
-<arg>'${output}[0]'=='PASS'</arg>
-<doc>Stops executing the enclosing FOR loop if the ``condition`` is true.</doc>
-<status status="NOT RUN" starttime="20230124 17:14:04.462" endtime="20230124 17:14:04.463"/>
-</kw>
-<status status="NOT RUN" starttime="20230124 17:14:04.460" endtime="20230124 17:14:04.463"/>
-</iter>
-<status status="NOT RUN" starttime="20230124 17:14:04.459" endtime="20230124 17:14:04.463"/>
-</for>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" starttime="20230124 17:14:04.463" endtime="20230124 17:14:04.463"/>
-</kw>
-<kw name="Close Application" library="AppiumLibrary" type="TEARDOWN">
-<doc>Closes the current application and also close webdriver session.</doc>
-<status status="PASS" starttime="20230124 17:14:04.464" endtime="20230124 17:14:05.550"/>
-</kw>
-<status status="FAIL" starttime="20230124 17:13:09.702" endtime="20230124 17:14:05.550">BrokenPipeError: [Errno 32] Broken pipe</status>
+<status status="PASS" starttime="20230127 10:24:48.262" endtime="20230127 10:24:49.137"/>
 </test>
-<doc>IOS APP</doc>
-<status status="FAIL" starttime="20230124 17:13:09.529" endtime="20230124 17:14:05.552"/>
+<status status="PASS" starttime="20230127 10:24:48.112" endtime="20230127 10:24:49.137"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Demo7 Ios">Demo7 Ios</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Demo2">Demo2</stat>
 </suite>
 </statistics>
 <errors>
