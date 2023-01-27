@@ -1,54 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230127 10:24:48.109" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0 (Python 3.10.2 on win32)" generated="20230127 12:11:43.482" rpa="false" schemaversion="3">
 <suite id="s1" name="Demo2" source="C:\Mine\Company\LT7\robot_project\api_suite\demo2.robot">
 <kw name="Create Session" library="RequestsLibrary" type="SETUP">
 <arg>alias=petshop</arg>
 <arg>url=https://petstore.swagger.io/v2</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20230127 10:24:48.262" level="INFO">Creating Session using : alias=petshop, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20230127 10:24:48.262" endtime="20230127 10:24:48.262"/>
+<msg timestamp="20230127 12:11:43.664" level="INFO">Creating Session using : alias=petshop, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230127 12:11:43.664" endtime="20230127 12:11:43.664"/>
 </kw>
-<test id="s1-t1" name="TC3" line="17">
-<kw name="GET On Session" library="RequestsLibrary">
+<test id="s1-t1" name="TC4 Update Pet" line="41">
+<kw name="Get Binary File" library="OperatingSystem">
+<var>${json}</var>
+<arg>path=${EXECDIR}${/}test_data${/}data.json</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20230127 12:11:43.664" level="INFO" html="true">Getting file '&lt;a href="file://C:\Mine\Company\LT7\robot_project\test_data\data.json"&gt;C:\Mine\Company\LT7\robot_project\test_data\data.json&lt;/a&gt;'.</msg>
+<msg timestamp="20230127 12:11:43.680" level="INFO">${json} = {
+  "id": 5001,
+  "category": {
+    "id": 0,
+    "name": "string"
+  },
+  "name": "doggie-abc",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+...</msg>
+<status status="PASS" starttime="20230127 12:11:43.664" endtime="20230127 12:11:43.680"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{headers}</var>
+<arg>content-type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230127 12:11:43.680" level="INFO">&amp;{headers} = { content-type=application/json }</msg>
+<status status="PASS" starttime="20230127 12:11:43.680" endtime="20230127 12:11:43.680"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
 <var>${response}</var>
 <arg>alias=petshop</arg>
-<arg>url=pet/findByStatus?status=sold</arg>
-<doc>Sends a GET request on a previously created HTTP Session.</doc>
-<msg timestamp="20230127 10:24:49.137" level="INFO">GET Request : url=https://petstore.swagger.io/v2/pet/findByStatus?status=sold 
- path_url=/v2/pet/findByStatus?status=sold 
- headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
- body=None 
+<arg>url=pet</arg>
+<arg>data=${json}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20230127 12:11:44.579" level="INFO">PUT Request : url=https://petstore.swagger.io/v2/pet 
+ path_url=/v2/pet 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'content-type': 'application/json', 'Content-Length': '239'} 
+ body=b'{\r\n  "id": 5001,\r\n  "category": {\r\n    "id": 0,\r\n    "name": "string"\r\n  },\r\n  "name": "doggie-abc",\r\n  "photoUrls": [\r\n    "string"\r\n  ],\r\n  "tags": [\r\n    {\r\n      "id": 0,\r\n      "name": "string"\r\n    }\r\n  ],\r\n  "status": "available"\r\n}' 
  </msg>
-<msg timestamp="20230127 10:24:49.137" level="INFO">GET Response : url=https://petstore.swagger.io/v2/pet/findByStatus?status=sold 
+<msg timestamp="20230127 12:11:44.579" level="INFO">PUT Response : url=https://petstore.swagger.io/v2/pet 
  status=200, reason=OK 
- headers={'Date': 'Fri, 27 Jan 2023 04:54:49 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
- body=[{"id":1122338506818,"category":{"id":5436,"name":"soaspec_test"},"name":"Charlie","photoUrls":["string"],"tags":[{"id":1,"name":"string"}],"status":"sold"},{"id":9223372016900013315,"name":"Charlie","photoUrls":[],"tags":[],"status":"sold"},{"id":15435006001660,"category":{"id":2432432,"name":"category_name"},"name":"5239423","photoUrls":["test URL"],"tags":[{"id":5,"name":"fact tag"}],"status":"sold"},{"id":9223372016900013376,"category":{"id":-12451059,"name":"pariatur"},"name":"doggie","photoUrls":["proident reprehenderit","aliqua nisi"],"tags":[{"id":-51074348,"name":"nisi nulla"},{"id":85662688,"name":"deserunt incididunt laboris"}],"status":"sold"},{"id":13,"category":{"id":0,"name":"cats"},"photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"sold"},{"id":9223372016900013961,"category":{"id":-41236579,"name":"proident eu"},"name":"doggie","photoUrls":["http://img2.joyreactor.cc/pics/post/%D0%BA%D1%80%D0%B0%D1%81%D0%B0%D0%B2%D0%B8%D1%86%D0%B0-%D0%BF%D0%B5%D1%81%D0%BE%D1%87%D0%BD%D0%B8%D1%86%D0%B0-2720769.jpeg"],"tags":[{"id":75889240,"name":"nostrud pariatur ullamco"},{"id":34200791,"name":"veniam incididunt do"}],"status":"sold"}] 
+ headers={'Date': 'Fri, 27 Jan 2023 06:41:45 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"id":5001,"category":{"id":0,"name":"string"},"name":"doggie-abc","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"} 
  </msg>
-<msg timestamp="20230127 10:24:49.137" level="INFO">C:\Program Files\Python310\lib\site-packages\urllib3\connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'petstore.swagger.io'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+<msg timestamp="20230127 12:11:44.579" level="INFO">C:\Program Files\Python310\lib\site-packages\urllib3\connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'petstore.swagger.io'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
   warnings.warn(</msg>
-<msg timestamp="20230127 10:24:49.137" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230127 10:24:48.262" endtime="20230127 10:24:49.137"/>
+<msg timestamp="20230127 12:11:44.579" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230127 12:11:43.680" endtime="20230127 12:11:44.579"/>
 </kw>
 <kw name="Status Should Be" library="RequestsLibrary">
 <arg>200</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" starttime="20230127 10:24:49.137" endtime="20230127 10:24:49.137"/>
+<status status="PASS" starttime="20230127 12:11:44.579" endtime="20230127 12:11:44.579"/>
 </kw>
 <kw name="Log" library="BuiltIn">
 <arg>${response.json()}</arg>
 <doc>Logs the given message with the given level.</doc>
-<msg timestamp="20230127 10:24:49.137" level="INFO">[{'id': 1122338506818, 'category': {'id': 5436, 'name': 'soaspec_test'}, 'name': 'Charlie', 'photoUrls': ['string'], 'tags': [{'id': 1, 'name': 'string'}], 'status': 'sold'}, {'id': 9223372016900013315, 'name': 'Charlie', 'photoUrls': [], 'tags': [], 'status': 'sold'}, {'id': 15435006001660, 'category': {'id': 2432432, 'name': 'category_name'}, 'name': '5239423', 'photoUrls': ['test URL'], 'tags': [{'id': 5, 'name': 'fact tag'}], 'status': 'sold'}, {'id': 9223372016900013376, 'category': {'id': -12451059, 'name': 'pariatur'}, 'name': 'doggie', 'photoUrls': ['proident reprehenderit', 'aliqua nisi'], 'tags': [{'id': -51074348, 'name': 'nisi nulla'}, {'id': 85662688, 'name': 'deserunt incididunt laboris'}], 'status': 'sold'}, {'id': 13, 'category': {'id': 0, 'name': 'cats'}, 'photoUrls': ['string'], 'tags': [{'id': 0, 'name': 'string'}], 'status': 'sold'}, {'id': 9223372016900013961, 'category': {'id': -41236579, 'name': 'proident eu'}, 'name': 'doggie', 'photoUrls': ['http://img2.joyreactor.cc/pics/post/%D0%BA%D1%80%D0%B0%D1%81%D0%B0%D0%B2%D0%B8%D1%86%D0%B0-%D0%BF%D0%B5%D1%81%D0%BE%D1%87%D0%BD%D0%B8%D1%86%D0%B0-2720769.jpeg'], 'tags': [{'id': 75889240, 'name': 'nostrud pariatur ullamco'}, {'id': 34200791, 'name': 'veniam incididunt do'}], 'status': 'sold'}]</msg>
-<status status="PASS" starttime="20230127 10:24:49.137" endtime="20230127 10:24:49.137"/>
+<msg timestamp="20230127 12:11:44.579" level="INFO">{'id': 5001, 'category': {'id': 0, 'name': 'string'}, 'name': 'doggie-abc', 'photoUrls': ['string'], 'tags': [{'id': 0, 'name': 'string'}], 'status': 'available'}</msg>
+<status status="PASS" starttime="20230127 12:11:44.579" endtime="20230127 12:11:44.579"/>
 </kw>
-<kw name="Log" library="BuiltIn">
-<arg>${response.json()}[0][id]</arg>
-<doc>Logs the given message with the given level.</doc>
-<msg timestamp="20230127 10:24:49.137" level="INFO">1122338506818</msg>
-<status status="PASS" starttime="20230127 10:24:49.137" endtime="20230127 10:24:49.137"/>
-</kw>
-<status status="PASS" starttime="20230127 10:24:48.262" endtime="20230127 10:24:49.137"/>
+<status status="PASS" starttime="20230127 12:11:43.664" endtime="20230127 12:11:44.579"/>
 </test>
-<status status="PASS" starttime="20230127 10:24:48.112" endtime="20230127 10:24:49.137"/>
+<status status="PASS" starttime="20230127 12:11:43.482" endtime="20230127 12:11:44.579"/>
 </suite>
 <statistics>
 <total>

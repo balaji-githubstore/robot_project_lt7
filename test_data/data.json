@@ -1,0 +1,18 @@
+{
+  "id": 5001,
+  "category": {
+    "id": 0,
+    "name": "string"
+  },
+  "name": "doggie-abc",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": "available"
+}
